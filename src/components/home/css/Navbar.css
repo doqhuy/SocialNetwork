@@ -1,0 +1,113 @@
+.dropdown-container{
+    position: absolute;
+    top: 4rem;
+    right: 200px;
+    z-index: 1000;
+    display: none;
+    width: 500px;
+    border-radius: 5px;
+}
+.imgMess{
+    width:30px;
+    height:30px;
+}
+.imgSearch{
+    width:20px;
+    height:20px;
+}
+.show-dropdown{
+    display: block;
+}
+
+.button-navbar-outline{
+    color:rgb(192, 192, 192);
+    background: #1a1c20;
+}
+
+.button-navbar-outline:hover{
+    color:white;
+    background: #30343b;
+    border-color: white;
+}
+
+#icon-badge-container-friend-requests, 
+#icon-badge-container-messages{
+    position:relative;
+}
+
+.icon-badge-wrapper{
+    position:relative;
+}
+
+/* #icon-badge-container-friend-requests:after{
+    display: block;
+    content: attr(data-count);
+    position: absolute;
+    background-color: rgb(246, 84, 50);
+    bottom: 12px;
+    left: 12px;
+    text-align: center;
+    color: white;
+    padding: 2px 4px;
+} */
+
+#icon-badge-container-friend-requests{
+    display: block;
+    position: absolute;
+    background-color: rgb(246, 84, 50);
+    font-size: 0.8rem;
+    bottom: 105px;
+    left: 135px;
+    text-align: center;
+    color: white;
+    padding: 1px 4px;
+    border-radius: 30%;
+}
+.dropdown-menu{
+    background-color: #1a1c20;
+    border-radius: 6%;
+}
+.nav-item:hover{
+    background-color: #30343b;
+}
+.imgProfile{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+}
+#icon-badge-container-messages {
+    display: block;
+    position: absolute;
+    background-color: rgb(246, 84, 50);
+    font-size: 0.8rem;
+    bottom: 22px;
+    left: 36px;
+    text-align: center;
+    color: white;
+    padding: 1px 4px;
+    border-radius: 30%;
+}
+.iconFriend{
+    width:30px;
+    height:30px;
+}
+.main-logo {
+    width:50px;
+    height:50px;
+}
+.site-logo p{
+    font-size:35px;
+}
+#icon-badge-container-friend-requests:hover, 
+#icon-badge-container-messages:hover {
+    background-color: rgb(167, 28, 19);
+    transition: background-color 1s ease-in-out;
+}
+
+
+@media screen and (max-width: 800px){
+    .form-inline {
+        display: none;
+    }
+}
+

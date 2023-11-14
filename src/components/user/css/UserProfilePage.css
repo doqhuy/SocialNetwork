@@ -1,0 +1,19 @@
+.table > tbody > tr > td {
+    vertical-align:middle;
+}
+
+.table > thead > tr > th {
+    font-weight: 600;
+}
+
+.username-color{
+    color:#40a3f4;
+}
+
+.profile-content-section {
+    width: 100%;
+    border-radius: 5px;
+    background: #2b2929;
+    color:rgb(255, 255, 255);
+}
+

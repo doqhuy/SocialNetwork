@@ -1,0 +1,41 @@
+.error-page-content-section {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 14px 1px rgba(0, 0, 0, 0.3);
+    background: rgb(53, 51, 51);
+    color:rgb(255, 255, 255);
+}
+
+.error-page-content-section-unauthorized{
+    width: 40%;
+    margin: 5rem auto;
+    padding-top: 2rem ;
+    padding-bottom: 2rem;
+}
+
+.error-page-container{
+    width: 90%;
+    margin: auto;
+}
+
+.image-wrapper{
+    width: 100%;
+    margin: auto;
+}
+
+img{
+    width: 20%;
+}
+
+/* @media  screen and (max-width: 1300px){
+    .error-page-content-section{
+        margin-top: 10rem;
+     }
+ }
+
+ @media  screen and (max-width: 800px){
+    .error-page-content-section{
+        margin-top: 5rem;
+        width: 100%;
+     }
+ } */
