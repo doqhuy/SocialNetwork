@@ -16,6 +16,9 @@ class RegisterPage extends Component {
             email: '',
             password: '',
             confirmPassword: '',
+            birthDay: '',
+            gender: '',
+            info: ' ',
             firstName: '',
             lastName: '',
             address: '',
@@ -29,6 +32,8 @@ class RegisterPage extends Component {
                 confirmPassword: false,
                 firstName: false,
                 lastName: false,
+                gender: false,
+                birthDay: false,
                 address: false,
                 city: false,
             }
@@ -72,8 +77,8 @@ class RegisterPage extends Component {
     }
 
     canBeSubmitted() {
-        const { username, email, firstName, lastName, password, confirmPassword, address, city } = this.state;
-        const errors = this.validate(username, email, firstName, lastName, password, confirmPassword, address, city);
+        const { username, email, firstName, lastName, gender, password, confirmPassword, address, city, birthDay } = this.state;
+        const errors = this.validate(username, email, firstName, lastName, gender, password, confirmPassword, address, city, birthDay);
         const isDisabled = Object.keys(errors).some(x => errors[x])
         return !isDisabled;
     }
@@ -85,7 +90,7 @@ class RegisterPage extends Component {
 
     }
 
-    validate = (username, email, firstName, lastName, password, confirmPassword, address, city) => {
+    validate = (username, email, firstName, lastName, gender, password, confirmPassword, address, city, birthDay) => {
         const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
         const firstLastNameRegex = /^[A-Z]([a-zA-Z]+)?$/;
         const testEmail = emailRegex.test(email)
@@ -96,6 +101,8 @@ class RegisterPage extends Component {
             email: email.length === 0 || !testEmail,
             firstName: firstName.length === 0 || !testFirstName,
             lastName: lastName.length === 0 || !testLastName,
+            birthDay: birthDay.length === 0,
+            gender: gender.length ===0,
             password: password.length < 4 || password.length > 16,
             confirmPassword: confirmPassword.length === 0 || confirmPassword !== password,
             address: address.length === 0,
@@ -104,8 +111,8 @@ class RegisterPage extends Component {
     }
 
     render() {
-        const { username, email, firstName, lastName, password, confirmPassword, address, city } = this.state;
-        const errors = this.validate(username, email, firstName, lastName, password, confirmPassword, address, city);
+        const { username, email, firstName, lastName, gender, password, confirmPassword, address, city, birthDay} = this.state;
+        const errors = this.validate(username, email, firstName, lastName, gender, password, confirmPassword, address, city, birthDay);
         const isEnabled = !Object.keys(errors).some(x => errors[x])
 
         const shouldMarkError = (field) => {
@@ -172,7 +179,21 @@ class RegisterPage extends Component {
                                         />
                                         {shouldMarkError('address') && <small id="addressHelp" className="form-text alert alert-danger">{(!this.state.address ? 'Địa chỉ không được để trống!' : '')}</small>}
                                     </div>
-
+                                    <div className="form-group">
+                                        <label htmlFor="gender" ></label>
+                                        <input
+                                            type="text"
+                                            className={"form-control " + (shouldMarkError('gender') ? "error" : "")}
+                                            id="gender"
+                                            name="gender"
+                                            value={this.state.gender}
+                                            onChange={this.onChangeHandler}
+                                            onBlur={this.handleBlur('gender')}
+                                            aria-describedby="genderHelp"
+                                            placeholder="Nam/Nữ"
+                                        />
+                                        {shouldMarkError('gender') && <small id="genderHelp" className="form-text alert alert-danger">{(!this.state.gender ? 'Giới tính không được để trống!' : '')}</small>}
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="password" ></label>
                                         <input
@@ -239,7 +260,21 @@ class RegisterPage extends Component {
                                         />
                                         {shouldMarkError('city') && <small id="cityHelp" className="form-text alert alert-danger">{(!this.state.city ? 'Quên quán không được để trống!' : '')}</small>}
                                     </div>
-
+                                    <div className="form-group">
+                                        <label htmlFor="birthDay" ></label>
+                                        <input
+                                            type="text"
+                                            className={"form-control " + (shouldMarkError('birthDay') ? "error" : "")}
+                                            id="birthDay"
+                                            name="birthDay"
+                                            value={this.state.birthDay}
+                                            onChange={this.onChangeHandler}
+                                            onBlur={this.handleBlur('birthDay')}
+                                            aria-describedby="birthDayHelp"
+                                            placeholder="Nhập ngày sinh"
+                                        />
+                                        {shouldMarkError('birthDay') && <small id="birthDayHelp" className="form-text alert alert-danger">{(!this.state.birthDay ? 'Ngày sinh không được để trống!' : '')}</small>}
+                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="confirmPassword" ></label>
                                         <input
@@ -257,7 +292,7 @@ class RegisterPage extends Component {
                                     </div>
                                 </section>
                             </div>
-
+                            
                             <div className="text-center">
                                 <button disabled={!isEnabled} type="submit" className="btn App-button-primary btn-lg m-3">Đăng ký</button>
                             </div>

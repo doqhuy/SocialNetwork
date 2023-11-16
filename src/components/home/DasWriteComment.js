@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import { userService} from '../../infrastructure';
 import TextareaAutosize from 'react-autosize-textarea';
+import './css/DasMainShareContent.css';
 
-export default class WriteComment extends Component {
+export default class DasWriteComment extends Component {
     constructor(props) {
         super(props)
 

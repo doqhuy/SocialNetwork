@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink, Route, Switch } from 'react-router-dom';
 import userService from '../../infrastructure/userService';
 import './css/StartPage.css';
 
@@ -7,6 +7,7 @@ const StartPage = () => {
     const isAdmin = userService.isAdmin();
     const isRoot = userService.isRoot();
     const currentUserId = userService.getUserId();
+    const userId = userService.getUserId();
     let StartPageView;
 
     if (!localStorage.getItem('token')) {
@@ -25,10 +26,11 @@ const StartPage = () => {
                 </div>
             </div >
         )
-    } else {
+    } 
+    else {
         StartPageView = (
-            <div>
-                <div className="containertext-center start-page-margin" >
+            <div className="d-flex  justify-content-xl-around">
+                {/* <div className="container text-center start-page-margin" >
                     <div className="row align-items-start mb-0 mt-5">
                        
                         <h3 className="md-display-5 h3 h3-responsive mb-3">Hello {userService.getUsername()}</h3>
@@ -40,6 +42,9 @@ const StartPage = () => {
                             {(isAdmin || isRoot) && <NavLink className="btn App-button-primary btn-lg m-3" to={`/home/users/all/${userService.getUserId()}`} role="button">Danh sách người dùng</NavLink>}
                         </p>
                     </div>
+                </div> */}
+                <div className="d-flex flex-row">
+                    <NavLink className="btn App-button-primary btn-lg m-5"  exact to={`/dasbroad/${userId}`} role="button">Đến trang chính</NavLink>
                 </div>
             </div>
            

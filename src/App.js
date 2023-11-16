@@ -9,7 +9,6 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
 import './styles/App.css';
 import { css } from '@emotion/core';
-import { CircleLoader } from 'react-spinners';
 
 import { connect } from 'react-redux';
 import { logoutAction } from './store/actions/authActions';
@@ -18,6 +17,8 @@ const StartPage = lazy(() => import('./components/auth/StartPage'))
 const RegisterPage = lazy(() => import('./components/auth/RegisterPage'))
 const LoginPage = lazy(() => import('./components/auth/LoginPage'))
 const HomePage = lazy(() => import('./components/home/HomePage'))
+const DasbroadPage = lazy(() => import('./components/home/DasbroadPage'))
+const MessageBox = lazy(() => import('./components/home/MessageBox'));
 const ErrorPage = lazy(() => import('./components/common/ErrorPage'))
 
 const override = css`
@@ -52,19 +53,15 @@ class App extends Component {
         <ToastContainer transition={Zoom} closeButton={false} />
         <Suspense fallback={
           <div className='sweet-loading'>
-            <CircleLoader
-              css={override}
-              sizeUnit={"px"}
-              size={150}
-              color={'#61dafb'}
-              loading={true}
-            />
+              Đang tải...
           </div>}>
           <Switch>
             <Route exact path="/" component={StartPage} />
             {!loggedIn && <Route exact path="/register" component={RegisterPage} />}
             {!loggedIn && <Route exact path="/login" component={LoginPage} />}
+            {loggedIn && <Route path="/dasbroad" component={DasbroadPage} />}
             {loggedIn && <Route path="/home" component={HomePage} />}
+            {loggedIn && <Route path="/message" component={MessageBox} />}
             <Route exact path="/error" component={ErrorPage} />
             <Route component={ErrorPage} />
           </Switch>

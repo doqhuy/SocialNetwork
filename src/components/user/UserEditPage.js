@@ -19,6 +19,9 @@ class UserEditPage extends Component {
             email: this.props.timeLineUserData.email,
             firstName: this.props.timeLineUserData.firstName,
             lastName: this.props.timeLineUserData.lastName,
+            gender: this.props.timeLineUserData.gender,
+            info: this.props.timeLineUserData.info,
+            birthDay: this.props.timeLineUserData.birthDay,
             address: this.props.timeLineUserData.address,
             city: this.props.timeLineUserData.city,
             profilePicUrl: this.props.timeLineUserData.profilePicUrl,
@@ -28,6 +31,9 @@ class UserEditPage extends Component {
                 email: false,
                 firstName: false,
                 lastName: false,
+                gender: false,
+                info: false,
+                birthDay: false,
                 address: false,
                 city: false,
                 profilePicUrl: false,
@@ -59,6 +65,9 @@ class UserEditPage extends Component {
                 email: this.props.timeLineUserData.email,
                 firstName: this.props.timeLineUserData.firstName,
                 lastName: this.props.timeLineUserData.lastName,
+                birthDay: this.props.timeLineUserData.birthDay,
+                gender: this.props.timeLineUserData.gender,
+                info: this.props.timeLineUserData.info,
                 address: this.props.timeLineUserData.address,
                 city: this.props.timeLineUserData.city,
                 profilePicUrl: this.props.timeLineUserData.profilePicUrl,
@@ -80,6 +89,9 @@ class UserEditPage extends Component {
                 email: this.props.timeLineUserData.email,
                 firstName: this.props.timeLineUserData.firstName,
                 lastName: this.props.timeLineUserData.lastName,
+                birthDay: this.props.timeLineUserData.birthDay,
+                gender: this.props.timeLineUserData.gender,
+                info: this.props.timeLineUserData.info,
                 address: this.props.timeLineUserData.address,
                 city: this.props.timeLineUserData.city,
                 profilePicUrl: this.props.timeLineUserData.profilePicUrl,
@@ -126,8 +138,8 @@ class UserEditPage extends Component {
     }
 
     canBeSubmitted() {
-        const { username, email, firstName, lastName, address, city, profilePicUrl, backgroundImageUrl } = this.state;
-        const errors = this.validate(username, email, firstName, lastName, address, city, profilePicUrl, backgroundImageUrl);
+        const { username, email, firstName, lastName, birthDay, gender, info, address, city, profilePicUrl, backgroundImageUrl } = this.state;
+        const errors = this.validate(username, email, firstName, lastName, birthDay, gender, info, address, city, profilePicUrl, backgroundImageUrl);
         const isDisabled = Object.keys(errors).some(x => errors[x])
         return !isDisabled;
     }
@@ -138,27 +150,30 @@ class UserEditPage extends Component {
         });
     }
 
-    validate = (username, email, firstName, lastName, address, city, profilePicUrl, backgroundImageUrl) => {
+    validate = (username, email, firstName, lastName, birthDay, gender, info, address, city, profilePicUrl, backgroundImageUrl) => {
         const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
         const firstLastNameRegex = /^[A-Z]([a-zA-Z]+)?$/;
         let testEmail = emailRegex.test(email)
         let testFirstName = firstLastNameRegex.test(firstName)
         let testLastName = firstLastNameRegex.test(lastName)
-
+        let testGender = firstLastNameRegex.test(gender)
         return {
             username: username.length < 4 || username.length > 16,
             email: email.length === 0 || !testEmail,
             firstName: firstName.length === 0 || !testFirstName,
             lastName: lastName.length === 0 || !testLastName,
+            gender: gender.length === 0, //|| !testGender,
+            birthDay: birthDay.length < 8 || birthDay.length > 11,
             address: address.length === 0,
             city: city.length === 0,
+            //info: info.length === 0,
             profilePicUrl: profilePicUrl.length === 0,
             backgroundImageUrl: backgroundImageUrl.length === 0,
         }
     }
 
     render() {
-        const { username, email, firstName, lastName, address, city, profilePicUrl, backgroundImageUrl } = this.state;
+        const { username, email, firstName, lastName, gender, info, birthDay, address, city, profilePicUrl, backgroundImageUrl } = this.state;
 
         const loggedInUserName = userService.getUsername();
         const loggedInRole = userService.getRole();
@@ -169,7 +184,7 @@ class UserEditPage extends Component {
         if (loggedInUserName !== username && (loggedInRole !== "ROOT")) {
             showPicsButtons = false;
         }
-        const errors = this.validate(username, email, firstName, lastName, address, city, profilePicUrl, backgroundImageUrl);
+        const errors = this.validate(username, email, firstName, lastName, birthDay, info, gender, address, city, profilePicUrl, backgroundImageUrl);
         const isEnabled = !Object.keys(errors).some(x => errors[x])
 
         const shouldMarkError = (field) => {
@@ -182,12 +197,12 @@ class UserEditPage extends Component {
             <Fragment>
                 <article className="main-article-shared-content">
                     <section className="form-content-section">
-                        <div className="container mb-4">
-                            <h2 className="text-center font-weight-bold mt-4" style={{ 'margin': '1rem auto' }}>Thông tin cá nhân</h2>
+                        <div className="container mb-3">
+                            <h3 className="text-center font-weight-bold mt-3" style={{ 'margin': '1rem auto' }}>Thông tin cá nhân</h3>
 
                             <div className="hr-styles"></div>
 
-                            <form className="Register-form-container  " onSubmit={this.onSubmitHandler} >
+                            <form className="Register-form-container" onSubmit={this.onSubmitHandler} >
 
                                 <div className="section-container w-100 mx-auto text-center">
                                     <section className="left-section">
@@ -221,6 +236,22 @@ class UserEditPage extends Component {
                                                 placeholder="Nhập họ của bạn"
                                             />
                                             {shouldMarkError('firstName') && <small id="firstNameHelp" className="form-text alert alert-danger">{(!this.state.firstName ? 'First Name is required!' : 'First Name must start with a capital letter and contain only letters!')}</small>}
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="birthDay" className="font-weight-bold" >Ngày sinh</label>
+                                            <input
+                                                type="text"
+                                                className={"form-control " + (shouldMarkError('birthDay') ? "error" : "")}
+                                                id="birthDay"
+                                                name="birthDay"
+                                                value={this.state.birthDay}
+                                                onChange={this.onChangeHandler}
+                                                onBlur={this.handleBlur('birthDay')}
+                                                aria-describedby="birthDayHelp"
+                                                placeholder="Nhập ngày sinh theo định dạng ngàythángnăm"
+                                            />
+                                            {shouldMarkError('birthDay') && <small id="birthDayHelp" className="form-text alert alert-danger">{(!this.state.birthDay ? 'BirthDay is required!' : '')}</small>}
                                         </div>
 
                                         <div className="form-group">
@@ -288,9 +319,23 @@ class UserEditPage extends Component {
                                                 aria-describedby="lastNameHelp"
                                                 placeholder="Nhập tên của bạn"
                                             />
-                                            {shouldMarkError('lastName') && <small id="lastNameHelp" className="form-text alert alert-danger">{(!this.state.lastName ? 'Tên đang để trống!' : 'Viết hoa tên coi!')}</small>}
+                                            {shouldMarkError('lastName') && <small id="lastNameHelp" className="form-text alert alert-danger">{(!this.state.lastName ? 'Tên đang để trống!' : 'Tên bị lỗi!')}</small>}
                                         </div>
-
+                                        <div className="form-group">
+                                            <label htmlFor="gender" className="font-weight-bold" >Giới tính</label>
+                                            <input
+                                                type="text"
+                                                className={"form-control " + (shouldMarkError('gender') ? "error" : "")}
+                                                id="gender"
+                                                name="gender"
+                                                value={this.state.gender}
+                                                onChange={this.onChangeHandler}
+                                                onBlur={this.handleBlur('gender')}
+                                                aria-describedby="genderHelp"
+                                                placeholder="Nhập giới tính"
+                                                />
+                                            {shouldMarkError('gender') && <small id="genderHelp" className="form-text alert alert-danger">{(!this.state.gender ? 'Giới tính đang để trống!' : 'Giới tính bị lỗi!')}</small>}
+                                        </div>
                                         <div className="form-group">
                                             <label htmlFor="city" className="font-weight-bold">Quê quán</label>
                                             <input
@@ -324,7 +369,19 @@ class UserEditPage extends Component {
                                         </div>}
                                     </section>
                                 </div>
-
+                                <div className="container form-group">
+                                            <label htmlFor="info" className="font-weight-bold" >Thông tin tiểu sử</label>
+                                            <textarea 
+                                                className={"form-control " + (shouldMarkError('backgroundImageUrl') ? "error" : "")} 
+                                                rows="3" 
+                                                id="info" 
+                                                name="info"
+                                                value={this.state.info}
+                                                onChange={this.onChangeHandler}
+                                                />
+                                            {shouldMarkError('info') && <small id="infoHelp" className="form-text alert alert-danger">{(!this.state.info ? 'Info is required!' : '')}</small>}
+                                        </div>
+                                        
                                 <div className="hr-styles"></div>
                                 <div className="text-center">
                                     <button disabled={!isEnabled} type="submit" className="btn App-button-primary btn-lg m-3">Lưu thay đổi</button>

@@ -7,6 +7,9 @@
     width: 500px;
     border-radius: 5px;
 }
+.navbar button{
+    width:120px;
+}
 .imgMess{
     width:30px;
     height:30px;

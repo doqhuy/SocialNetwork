@@ -1,11 +1,11 @@
 import React, { Fragment, Component } from 'react';
 import { toast } from 'react-toastify';
 import { ToastComponent } from '../common';
-import Post from './Post';
+import DasPost from './DasPost';
 import './css/MainSharedContent.css'
-import WritePost from './WritePost';
-import WriteComment from './WriteComment';
-import './css/MainSharedContent.css';
+import DasWritePost from './DasWritePost';
+import DasWriteComment from './DasWriteComment';
+import './css/DasMainShareContent.css';
 
 import { connect } from 'react-redux';
 import { createPostAction, fetchAllPostsAction, removePostAction, addLikePostAction } from '../../store/actions/postActions';
@@ -13,7 +13,7 @@ import { createCommentAction, removeCommentAction, addLikeCommentAction } from '
 import { changeCurrentTimeLineUserAction, changeAllFriendsAction } from '../../store/actions/userActions';
 import { changeAllPicturesAction } from '../../store/actions/pictureActions';
 
-class MainSharedContent extends Component {
+class DasMainSharedContent extends Component {
     constructor(props) {
         super(props)
 
@@ -177,17 +177,17 @@ class MainSharedContent extends Component {
     render() {
         return (
             <Fragment >
-                <article className="main-article-shared-content">
-                    <WritePost
+                <article className="dasmain-article-shared-content">
+                    <DasWritePost
                         loggedInUser={this.props.loggedInUser}
                         createPost={this.createPost}
                         createPostData={this.props.createPostData}
                         loadingAllPosts={this.props.fetchAllPosts.loading}
                     />
-                    <section className="post-content-section">
+                    <section className="daspost-content-section">
                         {this.state.allPostsArr.map((post, index) =>
                             <Fragment key={post.postId}>
-                                <Post
+                                <DasPost
                                     addLike={this.addLike}
                                     removePost={this.removePost}
                                     addLikeComment={this.addLikeComment}
@@ -197,7 +197,7 @@ class MainSharedContent extends Component {
                                     currentLoggedInUserId={this.props.loggedInUser.id}
                                 />
 
-                                <WriteComment
+                                <DasWriteComment
                                     timelineUserId={this.props.timeLineUser.id}
                                     loggedInUser={this.props.loggedInUser}
                                     getAllPosts={this.getAllPosts}
@@ -249,4 +249,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainSharedContent);
+export default connect(mapStateToProps, mapDispatchToProps)(DasMainSharedContent);

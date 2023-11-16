@@ -86,7 +86,10 @@ main .aside-article-header {
     width: 80%;
     /* margin: auto; */
 }
-
+main .tille1 h5 {
+    padding: 0 1rem;
+    color: rgb(240, 240, 240);
+}
 main .aside-article-header h3 {
     padding: 0 1rem;
     color: rgb(255, 255, 255);
@@ -99,7 +102,9 @@ main .aside-article-header h3 {
 main .aside-intro-content h4,
 main .aside-intro-content p {
     margin-bottom: 0.7rem;
-    color: rgb(190, 190, 190);
+    color: rgb(210, 210, 210);
+    padding-left: 34px;
+    padding-bottom:10px;
 }
 
 main .aside-intro-content p {
@@ -117,6 +122,14 @@ main .aside-article-icon {
     position:relative;
     overflow: hidden;
 }
+main .iconHome{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    display: block;
+    position: absolute;
+}
 main h3 {
     color:aliceblue;
 }
@@ -125,12 +138,14 @@ main .aside-article-icon:before {
     content: '';
     width: 35px;
     height: 35px;
-    background: rgb(255, 255, 255);
     border-radius: 50%;
 }
 
-main .aside-article-icon i {
-    background: rgb(224, 224, 224);
+main .aside-article-icon img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgb(106, 106, 106);
     color: rgb(255, 255, 255);
     display: block;
     position: absolute;
@@ -140,14 +155,15 @@ main .aside-article-icon i {
     height: auto; */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -49%);
 }
 
 /*main  aside-section  aside-article-photos*/
 
 main .aside-article-photos,
 main .aside-article-friends {
-    background: rgb(0, 166, 232);
+    color:rgb(255, 255, 255);
+    background: rgb(55, 54, 54);
     width: 100%;
     padding: 1rem;
     border-radius: 5px;

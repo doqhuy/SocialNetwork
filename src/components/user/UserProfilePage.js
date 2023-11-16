@@ -67,20 +67,15 @@ class UserProfilePage extends Component {
         const isCurrentUserRoot = timeLineUserRole === 'ROOT';
 
         return (
-            <Fragment >
-                <article className="main-article-shared-content">
+            <Fragment className="container1">
+                <article className="container1 main-article-shared-content">
                     <section className="profile-content-section">
-                        <div className="container mx-auto text-center mb-4 " >
-                            <h2 className="text-center font-weight-bold mt-4" style={{ 'margin': '1rem auto' }}>Thông tin cá nhân</h2>
+                        <div className="container mx-auto text-center mb-1" >
+                            <h3 className="text-center font-weight-bold mt-6 tille" style={{ 'margin': '1rem auto' }}>Thông tin cá nhân</h3>
 
-                            <div className="col-md-6 mx-auto text-center">
+                            <div className="col-md-10 mx-auto text-center">
                                 <table className="table table-hover mt-3 mx-auto text-center">
-                                    <thead>
-                                        <tr className="row align-center">
-                                            {/* <th className="col-md-6" scope="col">Category:</th>
-                                <th className="col-md-6" scope="col">Price</th>  */}
-                                        </tr>
-                                    </thead>
+                                    
                                     <tbody>
                                         <tr className="row">
                                             {/* <td className="col-md-6">
@@ -92,18 +87,26 @@ class UserProfilePage extends Component {
                                         </tr>
                                         <tr className="row">
                                             <td className="col-md-6" >
-                                                <h5 className=" font-weight-bold">Email</h5>
+                                                <h5 className="font-weight-normal text-start">Email</h5>
                                             </td>
                                             <td className="col-md-6">
-                                                <h5>{userService.formatUsername(this.props.timeLineUser.email)}</h5>
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.email)}</h5>
                                             </td>
                                         </tr>
                                         <tr className="row">
                                             <td className="col-md-6" >
-                                                <h5 className=" font-weight-bold">Họ và tên:</h5>
+                                                <h5 className="font-weight-normal text-start">Họ và tên</h5>
                                             </td>
                                             <td className="col-md-6" >
-                                                <h5>{userService.formatUsername(this.props.timeLineUser.firstName + " " + this.props.timeLineUser.lastName)}</h5>
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.firstName + " " + this.props.timeLineUser.lastName)}</h5>
+                                            </td>
+                                        </tr>
+                                        <tr className="row">
+                                            <td className="col-md-6" >
+                                                <h5 className="font-weight-normal text-start">Ngày sinh</h5>
+                                            </td>
+                                            <td className="col-md-6" >
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.birthDay)}</h5>
                                             </td>
                                         </tr>
                                         {/* <tr className="row">
@@ -116,32 +119,39 @@ class UserProfilePage extends Component {
                                         </tr> */}
                                         <tr className="row">
                                             <td className="col-md-6" >
-                                                <h5 className="font-weight-bold">Địa chỉ</h5>
+                                                <h5 className="font-weight-normal text-start">Giới tính</h5>
                                             </td>
                                             <td className="col-md-6">
-                                                <h5>{userService.formatUsername(this.props.timeLineUser.address)}</h5>
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.gender)}</h5>
                                             </td>
                                         </tr>
                                         <tr className="row">
                                             <td className="col-md-6" >
-                                                <h5 className=" font-weight-bold">Quê quán</h5>
+                                                <h5 className="font-weight-normal text-start">Địa chỉ</h5>
                                             </td>
-                                            <td className="col-md-6" >
-                                                <h5>{userService.formatUsername(this.props.timeLineUser.city)}</h5>
+                                            <td className="col-md-6">
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.address)}</h5>
                                             </td>
                                         </tr>
-                                        {/* {(isAdmin || isRoot) && <tr className="row">
+                                        <tr className="row">
+                                            <td className="col-md-6" >
+                                                <h5 className="font-weight-normal text-start">Quê quán</h5>
+                                            </td>
+                                            <td className="col-md-6" >
+                                                <h5 className="font-weight-normal text-start">{userService.formatUsername(this.props.timeLineUser.city)}</h5>
+                                            </td>
+                                        </tr>
+                                        {(isAdmin || isRoot) && <tr className="row">
                                             <td className="col-md-6" >
                                                 <h5 className=" font-weight-bold">Role</h5>
                                             </td>
                                             <td className="col-md-6" >
                                                 <h5>{timeLineUserRole}</h5>
                                             </td>
-                                        </tr>} */}
+                                        </tr>}
 
                                     </tbody>
                                 </table>
-                                <div className="hr-styles"></div>
                                 <div className="d-flex justify-content-center ">
                                     {(((isRoot || isAdmin) && !isCurrentUserRoot) || userService.isLoggedInUser(this.props.timeLineUser.username)) && <ButtonWithClickEvent buttonClass={"btn App-button-primary btn-lg m-3"} url={`/home/users/edit/`} text={"Chỉnh sửa"} onClick={this.onSubmitHandlerEdit} />}
                                     {((isRoot) && !userService.isLoggedInUser(this.props.timeLineUser.username)) && <ButtonWithClickEvent buttonClass={"btn App-button-primary btn-lg m-3"} url={`/home/users/delete/`} text={"Delete"} onClick={this.onSubmitHandlerDelete} />}

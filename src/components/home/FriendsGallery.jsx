@@ -2,20 +2,19 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { userService } from '../../infrastructure';
 import placeholder_user_image from '../../assets/images/placeholder.png';
+import iconImage from '../../assets/images/friends.png'
 
 const FriendsGallery = (props) => {
     return (
         <Fragment >
             <article className="aside-article-friends">
                 <div className="aside-article-header">
-                    <div className="aside-article-icon">
-                        <i className="fas fa-user-friends"></i>
+                <div className="aside-article-icon">
+                        <img className = "iconIntro" src = {iconImage}></img>
                     </div>
-                    <NavLink className="friends " exact to={`/home/friends/${props.timeLineUserId}`}>
-                        <h3 className="aside-article-title" style={{ color: ' #333' }}>
-                            Friends &bull; {props.friendsArr.length}
-                        </h3>
-                    </NavLink>
+                    <h3 className="aside-article-title" style={{ color: ' #fff' }}>
+                            Bạn bè &bull; {props.friendsArr.length}
+                    </h3>
                 </div>
                 <div className="hr-styles" style={{'width': '90%'}}></div>
                 <ul className="aside-article-gallery ">
@@ -35,6 +34,9 @@ const FriendsGallery = (props) => {
                             </li>)
                     })}
                 </ul>
+                <button className="container button update-info">
+                    <NavLink className="friends " exact to={`/home/friends/${props.timeLineUserId}`}>Xem danh sách bạn bè</NavLink>
+                </button>
             </article>
         </Fragment>
     )

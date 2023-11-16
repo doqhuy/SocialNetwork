@@ -1,15 +1,18 @@
 import React, { Fragment, Component } from 'react';
-import { userService} from '../../infrastructure';
+import { userService } from '../../infrastructure';
 import TextareaAutosize from 'react-autosize-textarea';
+import { RingLoader, GridLoader, MoonLoader, CircleLoader } from 'react-spinners';
+import Picture from '../user/Picture';
+import './css/DasMainShareContent.css';
 
-export default class WriteComment extends Component {
+export default class DasWritePost extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             content: '',
             imageUrl: '',
-            createCommentData: '',
+            createPostData: '',
             touched: {
                 content: false,
             }
@@ -21,27 +24,29 @@ export default class WriteComment extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const loading = this.props.createCommentData.loading || this.props.loadingAllPosts;
+        const loading = this.props.createPostData.loading || this.props.loadingAllPosts;
 
-        if (!loading && this.state.createCommentData !== this.props.createCommentData) {
+        if (!loading && this.state.createPostData !== this.props.createPostData) {
             this.setState({
                 content: '',
                 imageUrl: '',
-                createCommentData: this.props.createCommentData,
+                createPostData: this.props.createPostData,
             })
         }
     }
 
+    changeUserData = (userdata) => {
+        this.setState({loggedInUserProfilePicUrl: userdata.profilePicUrl})
+    }
+
     onSubmitHandler(event) {
         event.preventDefault();
-
         if (!this.canBeSubmitted()) {
             return;
         }
-        const postId = this.props.postId;
-        const { content, imageUrl } = this.state;
 
-        this.props.createComment(postId, content, imageUrl )
+        const { content, imageUrl } = this.state;
+        this.props.createPost(content, imageUrl);
     }
 
     onChangeHandler(event) {
@@ -55,14 +60,13 @@ export default class WriteComment extends Component {
             touched: { ...this.state.touched, [field]: true }
         });
     }
-
+   
     canBeSubmitted() {
-        const { content } = this.state;
-        const errors = this.validate(content);
+        const { content, imageUrl } = this.state;
+        const errors = this.validate(content,imageUrl);
         const isDisabled = Object.keys(errors).some(x => errors[x])
         return !isDisabled;
     }
-
     validate = (content) => {
         return {
             content: content.length === 0,
@@ -71,42 +75,46 @@ export default class WriteComment extends Component {
 
     render() {
         const { content, imageUrl } = this.state;
-        const errors = this.validate(content);
+        const errors = this.validate(content, imageUrl);
         const isEnabled = !Object.keys(errors).some(x => errors[x]);
         const displayButon = isEnabled ? '' : 'hidden';
 
+        const imageClass = userService.getImageSize(this.props.loggedInUser.profilePicUrl);
         const loggedInUserProfilePicUrl = this.props.loggedInUser.profilePicUrl;
-        const imageClass = userService.getImageSize(loggedInUserProfilePicUrl);
         const loggedInUserFirstName = this.props.loggedInUser.firstName + " " + this.props.loggedInUser.lastName;
-        const formattedName = userService.formatUsername(loggedInUserFirstName);
+
+        const imageClass1 = userService.getImageSize(this.props.imageUrl);
+
+        let formattedUsername = userService.formatUsername(loggedInUserFirstName)
 
         return (
             <Fragment>
-                <section className="comment-section">
-                    <div className="write-comment" id="create-comment-button-container">
+                <section className="posts-section">
+                    <div className="write-post" id="create-post-button-container">
                         <div className="post">
                             <div className="post-image">
                                 <img className={imageClass} src={loggedInUserProfilePicUrl} alt="" />
                             </div>
                             <div className="post-area-container">
-                                <form className="" onSubmit={this.onSubmitHandler}>
+                                <form id="post-form" onSubmit={this.onSubmitHandler}>
                                     <div className="" id="post-textarea-form-group">
                                         <TextareaAutosize
                                             name="content"
                                             id="content"
                                             className="post-textarea"
-                                            value={this.state.content}
+                                            value={this.state.content.imageUrl}
                                             onChange={this.onChangeHandler}
                                             onBlur={this.handleBlur('content')}
                                             aria-describedby="contentHelp"
-                                            placeholder={`Viết bình luận, ${formattedName}!`}
+                                            placeholder={`Bạn đang nghĩ gì, ${formattedUsername}?`}
                                         >
                                         </TextareaAutosize>
                                     </div>
 
                                     <div className="text-center">
-                                        <button disabled={!isEnabled} style={{ 'visibility': `${displayButon}` }} type="submit" className="btn uiButtonGroup post-button-fbPhotoCurationControl App-button-primary ">Bình luận</button>
+                                        <button disabled={!isEnabled} style={{ 'visibility': `${displayButon}` }} type="submit" className="btn uiButtonGroup post-button-fbPhotoCurationControl App-button-primary ">Đăng bài</button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>

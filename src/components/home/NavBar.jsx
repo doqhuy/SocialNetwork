@@ -189,15 +189,15 @@ class Navbar extends Component {
         return (
             <Fragment >
                 <input type="checkbox" name="main-nav-toggle" id="main-nav-toggle" />
-                <header className="site-header">
+                <header className="site-header navbar">
                     <section className="navbar-section">
                         <div className="navbar-wrapper">
                             <div className="nav-searchbar-container">
                                 <div>
                                     <img className="main-logo" alt="" src={Logo} />
                                 </div>
-                                <div className="site-logo">
-                                    <NavLink to="/" className="nav-link"><p>InstaFace</p></NavLink>
+                                <div className="flex site-logo">
+                                    <NavLink exact to={`/dasbroad/${userId}`} className="nav-link"><p>InstaFace</p></NavLink>
                                 </div>
                                 {loggedIn && <form className="form-inline my-2 my-lg-0" onSubmit={this.searchFriend}>
                                     <input

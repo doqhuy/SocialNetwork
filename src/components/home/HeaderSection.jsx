@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import userService from '../../infrastructure/userService'
 import placeholder_user_image from '../../assets/images/placeholder.png';
 import default_background_image from '../../assets/images/default-background-image.jpg';
-
+import './css/Header.css';
 const HeaderSection = (props) => {
     const profilePicUrl = props.profilePicUrl || placeholder_user_image;
     const backgroundImageUrl = props.backgroundImageUrl || default_background_image

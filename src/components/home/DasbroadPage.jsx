@@ -5,28 +5,15 @@ import { ToastComponent } from '../common';
 import { userService } from '../../infrastructure/';
 import { css } from '@emotion/core';
 
-import TimeLine from './TimeLine';
-import HeaderSection from './HeaderSection';
-import MainSharedContent from './MainSharedContent';
-import Intro from './Intro';
-import PhotoGallery from './PhotosGallery';
-import FriendsGallery from './FriendsGallery';
+import DasSideBar from './DasSideBar';
+import DasMainSharedContent from './DasMainSharedContent';
+import DasRightBar from './DasRightBar';
 
 import { connect } from 'react-redux';
 import { fetchPicturesAction } from '../../store/actions/pictureActions';
 import { fetchAllUnreadMessagesAction } from '../../store/actions/messageActions';
 import { fetchLoggedInUserAction, fetchTimeLineUserAction, fetchAllFriendsAction, findFriendsAction } from '../../store/actions/userActions';
 
-const UserSearchResultsPage = lazy(() => import('../user/UserSearchResultsPage'));
-const UserProfilePage = lazy(() => import('../user/UserProfilePage'));
-const UserFriendsAllPage = lazy(() => import('../user/UserFriendsAllPage'));
-const UserFindFriendsPage = lazy(() => import('../user/UserFindFriendsPage'));
-const UserFriendRequestsPage = lazy(() => import('../user/UserFriendRequestsPage'));
-const UserAllPage = lazy(() => import('../user/UserAllPage'));
-const UserEditPage = lazy(() => import('../../components/user/UserEditPage'));
-const UserDeletePage = lazy(() => import('../../components/user/UserDeletePage'));
-const UserGalleryPage = lazy(() => import('../user/UserGalleryPage'));
-const UserLogsPage = lazy(() => import('../user/UserLogsPage'));
 const MessageBox = lazy(() => import('./MessageBox'));
 const ErrorPage = lazy(() => import('../common/ErrorPage'));
 
@@ -36,7 +23,7 @@ const override = css`
         border-color: red;
 `;
 
-class HomePage extends Component {
+class DasbroadPage extends Component {
     constructor(props) {
         super(props)
 
@@ -112,45 +99,26 @@ class HomePage extends Component {
     }
 
     render() {
-        const isRoot = userService.isRoot();
-        const isAdmin = userService.isAdmin();
-        const isTheCurrentLoggedInUser = this.props.loggedInUserData.id === this.props.timeLineUserData.id;
         let loggedIn = userService.isTheUserLoggedIn();
         debugger;
         return (
             <Fragment>
-
-                <HeaderSection  {...this.props.timeLineUserData} />
                 <main className="site-content">
                     <section className="main-section">
-                        <TimeLine {...this.props.timeLineUserData} />
                         <Suspense fallback={
                             <div className='sweet-loading'>
                                 Đang tải...
                             </div>}>
-                            <Switch>
-                                {loggedIn && <Route exact path="/home/comments/:id" component={MainSharedContent} />}
-                                {loggedIn && <Route exact path="/home/profile/:id" component={UserProfilePage} />}
-                                {loggedIn && (isRoot || isAdmin || isTheCurrentLoggedInUser) && <Route exact path="/home/users/edit/:id" component={UserEditPage} />}
-                                {(loggedIn && (isRoot || isAdmin)) && <Route exact path="/home/users/all/:id" component={UserAllPage} />}
-                                {(loggedIn && isRoot) && <Route exact path="/home/users/delete/:id" component={UserDeletePage} />}
-                                {loggedIn && <Route exact path="/home/gallery/:id" component={UserGalleryPage} />} 
-                                {(loggedIn && (isRoot || isAdmin)) && <Route exact path="/home/logs/:id" component={UserLogsPage} />}
-                                {loggedIn && <Route exact path="/home/friends/:id" component={UserFriendsAllPage} />}
-                                {loggedIn && <Route exact path="/home/findFriends/:id" component={UserFindFriendsPage} />}
-                                {loggedIn && <Route exact path="/home/friendRequests/:id" component={UserFriendRequestsPage} />}
-                                {loggedIn && <Route exact path="/home/users/search/" component={UserSearchResultsPage} />}
-
-                                <Route exact path="/error" component={ErrorPage} />
-                                <Route component={ErrorPage} />
-                            </Switch>
+                            <Fragment>
+                                <div className = "d-flex flex-row">{loggedIn && <Route exact path="/dasbroad/:id" component={DasSideBar} />}</div>
+                                <div className = "position-static">{loggedIn && <Route exact path="/dasbroad/:id" component={DasMainSharedContent} />}</div>
+                                <div className = "d-flex flex-row-reverse">{loggedIn && <Route exact path="/dasbroad/:id" component={DasRightBar} />}</div>
+                                {!loggedIn && <Route exact path="/error" component={ErrorPage} />}
+                            </Fragment>
                         </Suspense>
                     </section>
                     <Fragment>
                         <section className="aside-section">
-                            <Intro {...this.props.timeLineUserData} />
-                            <PhotoGallery picturesArr={this.props.picturesArr} timeLineUserId={this.props.timeLineUserData.id} />
-                            <FriendsGallery friendsArr={this.props.friendsArr} timeLineUserId={this.props.timeLineUserData.id} />
                             <MessageBox />
                         </section>
                     </Fragment>
@@ -182,4 +150,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(DasbroadPage);

@@ -1,0 +1,37 @@
+.right-side-bar{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display:flex;
+    align-items: start;
+    flex-direction: column;
+    margin-top:30px;
+    padding-top:10px;
+    width: 350px; 
+    height:625px;
+    background-color: rgb(44, 44, 44);
+    color:white;
+}
+.right-side-bar-header{
+    align-items: center;
+    display:flex;
+}
+p {
+    flex-grow: 1;
+    padding-left: 2rem;
+}
+.right-side-bar-icon{
+    display:flex;
+    align-items: center; 
+    justify-content: flex-end; 
+    min-width: fit-content;
+}
+.icon{
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    padding: 5px;
+    background-color: rgb(64 64 64);
+    cursor: pointer;
+    margin:5px;
+}
