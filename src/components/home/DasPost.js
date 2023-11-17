@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { userService } from '../../infrastructure';
 import Comment from './Comment';
-import { connect } from 'react-redux';
 
 export default class DasPost extends Component {
     constructor(props) {
@@ -43,9 +42,11 @@ export default class DasPost extends Component {
                     <p className="">{this.props.content} </p>
                 </div>
 
-                {this.props.imageUrl && <div className="post-media">
-                    <img className={imageClass} src={this.props.imageUrl} alt="Futurama" />
-                </div>}
+                {this.props.imageUrl != null && (
+                    <div className="relative h-60 md:h-96 bg-neutral-700">
+                        <img className={imageClass} src={this.props.imageUrl} objectFit="contain" layout="fill" alt="pic1"></img>
+                    </div>
+                )}
 
                 <div className="post-footer">
                     <div className="post-left-side-icons-container">

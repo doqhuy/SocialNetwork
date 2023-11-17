@@ -1,8 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { userService } from '../../infrastructure';
 import TextareaAutosize from 'react-autosize-textarea';
-import { RingLoader, GridLoader, MoonLoader, CircleLoader } from 'react-spinners';
-import Picture from '../user/Picture';
+import { toast } from 'react-toastify';
+import { ToastComponent } from '../common'
 import './css/DasMainShareContent.css';
 
 export default class DasWritePost extends Component {
@@ -11,7 +11,7 @@ export default class DasWritePost extends Component {
 
         this.state = {
             content: '',
-            imageUrl: '',
+            image_url: '',
             createPostData: '',
             touched: {
                 content: false,
@@ -21,6 +21,7 @@ export default class DasWritePost extends Component {
         this.handleBlur = this.handleBlur.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.onFileChange = this.onFileChange.bind(this);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -29,7 +30,7 @@ export default class DasWritePost extends Component {
         if (!loading && this.state.createPostData !== this.props.createPostData) {
             this.setState({
                 content: '',
-                imageUrl: '',
+                image_url: '',
                 createPostData: this.props.createPostData,
             })
         }
@@ -45,8 +46,8 @@ export default class DasWritePost extends Component {
             return;
         }
 
-        const { content, imageUrl } = this.state;
-        this.props.createPost(content, imageUrl);
+        const { content, image_url } = this.state;
+        this.props.createPost(content, image_url);
     }
 
     onChangeHandler(event) {
@@ -55,6 +56,10 @@ export default class DasWritePost extends Component {
         });
     }
 
+    onFileChange = (event) => {
+        this.setState({
+            image_url: event.target.files[0]});
+    }
     handleBlur = (field) => (event) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
@@ -62,8 +67,8 @@ export default class DasWritePost extends Component {
     }
    
     canBeSubmitted() {
-        const { content, imageUrl } = this.state;
-        const errors = this.validate(content,imageUrl);
+        const { content, image_url } = this.state;
+        const errors = this.validate(content,image_url);
         const isDisabled = Object.keys(errors).some(x => errors[x])
         return !isDisabled;
     }
@@ -74,8 +79,8 @@ export default class DasWritePost extends Component {
     }
 
     render() {
-        const { content, imageUrl } = this.state;
-        const errors = this.validate(content, imageUrl);
+        const { content, image_url } = this.state;
+        const errors = this.validate(content, image_url);
         const isEnabled = !Object.keys(errors).some(x => errors[x]);
         const displayButon = isEnabled ? '' : 'hidden';
 
@@ -83,7 +88,7 @@ export default class DasWritePost extends Component {
         const loggedInUserProfilePicUrl = this.props.loggedInUser.profilePicUrl;
         const loggedInUserFirstName = this.props.loggedInUser.firstName + " " + this.props.loggedInUser.lastName;
 
-        const imageClass1 = userService.getImageSize(this.props.imageUrl);
+        const imageClass1 = userService.getImageSize(this.props.image_url);
 
         let formattedUsername = userService.formatUsername(loggedInUserFirstName)
 
@@ -102,7 +107,7 @@ export default class DasWritePost extends Component {
                                             name="content"
                                             id="content"
                                             className="post-textarea"
-                                            value={this.state.content.imageUrl}
+                                            value={this.state.content}
                                             onChange={this.onChangeHandler}
                                             onBlur={this.handleBlur('content')}
                                             aria-describedby="contentHelp"

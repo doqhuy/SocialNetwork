@@ -301,7 +301,7 @@ main .main-article-shared-content {
 
 #container:hover .uiButtonGroup {
     opacity: 1;
-    transition: 1.5s ease-in;
+    transition: 0.5s ease-in;
 }
 
 .fbPhotoCurationControl {
@@ -334,19 +334,18 @@ main .main-article-shared-content {
 }
 
 .delete-button:hover{
-    background-color: rgb(167, 28, 19);
+    background-color: rgb(246, 84, 50);
     color:white;
 }
 
 .post-button-fbPhotoCurationControl {
     display: inline-block;
-    margin-right: 8px;
-    margin-top: 7px;
     position: absolute;
     right: 0;
-    top: 0;
+    bottom: 0;
     z-index: 7;
     opacity: 1;
+    width:80px;
 }
 
 

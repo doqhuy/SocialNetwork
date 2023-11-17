@@ -2,12 +2,11 @@ import React, { Component, Fragment, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastComponent } from '../common';
-import { userService } from '../../infrastructure/';
+import { userService } from '../../infrastructure';
 import { css } from '@emotion/core';
 
 import DasSideBar from './DasSideBar';
 import DasMainSharedContent from './DasMainSharedContent';
-import DasRightBar from './DasRightBar';
 
 import { connect } from 'react-redux';
 import { fetchPicturesAction } from '../../store/actions/pictureActions';
@@ -23,7 +22,7 @@ const override = css`
         border-color: red;
 `;
 
-class DasbroadPage extends Component {
+class DasboardPage extends Component {
     constructor(props) {
         super(props)
 
@@ -112,7 +111,7 @@ class DasbroadPage extends Component {
                             <Fragment>
                                 <div className = "d-flex flex-row">{loggedIn && <Route exact path="/dasbroad/:id" component={DasSideBar} />}</div>
                                 <div className = "position-static">{loggedIn && <Route exact path="/dasbroad/:id" component={DasMainSharedContent} />}</div>
-                                <div className = "d-flex flex-row-reverse">{loggedIn && <Route exact path="/dasbroad/:id" component={DasRightBar} />}</div>
+                                
                                 {!loggedIn && <Route exact path="/error" component={ErrorPage} />}
                             </Fragment>
                         </Suspense>
@@ -150,4 +149,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DasbroadPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DasboardPage);

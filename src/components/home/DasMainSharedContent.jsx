@@ -3,9 +3,9 @@ import { toast } from 'react-toastify';
 import { ToastComponent } from '../common';
 import DasPost from './DasPost';
 import './css/MainSharedContent.css'
-import DasWritePost from './DasWritePost';
-import DasWriteComment from './DasWriteComment';
-import './css/DasMainShareContent.css';
+import DasWritePost from '../dasboard/DasWritePost';
+import DasWriteComment from '../dasboard/DasWriteComment';
+import '../dasboard/css/DasMainShareContent.css';
 
 import { connect } from 'react-redux';
 import { createPostAction, fetchAllPostsAction, removePostAction, addLikePostAction } from '../../store/actions/postActions';

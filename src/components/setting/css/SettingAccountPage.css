@@ -1,0 +1,32 @@
+.setting-account-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left:100px;
+}
+.setting-form{
+    width: 800px;
+    border-radius: 5px;
+    box-shadow: 0 0 14px 1px rgba(0, 0, 0, 0.3);
+    background: #2b2929;
+    color:#ffffff;
+}
+.setting-form input{
+    width:100%;
+}
+.setting-form .info textarea{
+    width:100%;
+}
+.setting-form-container{
+    margin: auto;
+    background-image: url('../../../assets/images/vector2.svg');
+}
+.left-section, .righ-section{
+    flex: 0 1 30%;
+    margin: 0 1rem;
+}
+.setting-form-group{
+    position: relative;
+    margin-bottom: 2.8rem; 
+}

@@ -17,7 +17,8 @@ const StartPage = lazy(() => import('./components/auth/StartPage'))
 const RegisterPage = lazy(() => import('./components/auth/RegisterPage'))
 const LoginPage = lazy(() => import('./components/auth/LoginPage'))
 const HomePage = lazy(() => import('./components/home/HomePage'))
-const DasbroadPage = lazy(() => import('./components/home/DasbroadPage'))
+const SettingPage = lazy(() => import('./components/home/SettingPage'))
+const DasboardPage = lazy(() => import('./components/home/DasboardPage'))
 const MessageBox = lazy(() => import('./components/home/MessageBox'));
 const ErrorPage = lazy(() => import('./components/common/ErrorPage'))
 
@@ -59,7 +60,8 @@ class App extends Component {
             <Route exact path="/" component={StartPage} />
             {!loggedIn && <Route exact path="/register" component={RegisterPage} />}
             {!loggedIn && <Route exact path="/login" component={LoginPage} />}
-            {loggedIn && <Route path="/dasbroad" component={DasbroadPage} />}
+            {loggedIn && <Route path="/dasbroad" component={DasboardPage} />}
+            {loggedIn && <Route path="/setting" component={SettingPage} />}
             {loggedIn && <Route path="/home" component={HomePage} />}
             {loggedIn && <Route path="/message" component={MessageBox} />}
             <Route exact path="/error" component={ErrorPage} />

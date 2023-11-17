@@ -1,11 +1,11 @@
 .messagebox-container {
     border-radius: 0.3rem;
     background: #24272b;
-    width: 308px;
-    height: 532px;
+    width: 328px;
+    height: 625px;
     position: fixed;
     bottom: 0;
-    right: 40px;
+    right: 1px;
     z-index: 10;
     transition: height 0.8s ease-in-out;
 }
@@ -281,6 +281,14 @@
     position: absolute;
     bottom: 15px;
     right: 0;
+    width:40px;
+    height:25px;
+    background-color: #40a3f4;
+}
+.iconSendBtn{
+    width:20px;
+    height:20px;
+    margin-bottom:8px;
 }
 
 /* ##################################### */

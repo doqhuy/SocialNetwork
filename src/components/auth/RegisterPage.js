@@ -125,7 +125,7 @@ class RegisterPage extends Component {
             <Fragment>
                 <section className="pt-3">
                     <div className="container register-form-content-section pb-4 ">
-                        <h1 className="text-center font-weight-bold mt-4" style={{ 'margin': '1rem auto', 'paddingTop': '2rem' }}>Đăng ký</h1>
+                        <h1 className="text-center font-weight-bold mt-4" style={{ 'margin': '0rem auto', 'paddingTop': '0rem' }}>Tạo tài khoản</h1>
                         
 
                         <form className="Register-form-container" onSubmit={this.onSubmitHandler}>
@@ -143,7 +143,7 @@ class RegisterPage extends Component {
                                             onChange={this.onChangeHandler}
                                             onBlur={this.handleBlur('username')}
                                             aria-describedby="usernameHelp"
-                                            placeholder="Nhập tên người dùng hoặc tên đăng nhập"
+                                            placeholder="Nhập tên đăng nhập"
                                         />
                                         {shouldMarkError('username') && <small id="usernameHelp" className="form-text alert alert-danger"> {(!this.state.username ? 'Tên người dùng không được để trống!' : 'Tên người dùng phải từ 4 ký tự đến 16 ký tự!')}</small>}
                                     </div>
@@ -263,7 +263,7 @@ class RegisterPage extends Component {
                                     <div className="form-group">
                                         <label htmlFor="birthDay" ></label>
                                         <input
-                                            type="text"
+                                            type="date"
                                             className={"form-control " + (shouldMarkError('birthDay') ? "error" : "")}
                                             id="birthDay"
                                             name="birthDay"
@@ -288,7 +288,7 @@ class RegisterPage extends Component {
                                             aria-describedby="confirmPasswordHelp"
                                             placeholder="Xác nhận mật khẩu"
                                         />
-                                        {shouldMarkError('confirmPassword') && <small id="confirmPasswordHelp" className="form-text alert alert-danger">Mật khẩu không giống!</small>}
+                                        {shouldMarkError('confirmPassword') && <small id="confirmPasswordHelp" className="form-text alert alert-danger">Mật khẩu không giống nhau!</small>}
                                     </div>
                                 </section>
                             </div>

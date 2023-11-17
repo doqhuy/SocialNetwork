@@ -34,7 +34,7 @@ const FriendMessage = (props) => {
             <div className={`message-description`}>
                 <p className={`message-content ${chatContentClass}`}> {content} </p>
                 <div className={`message-info ${chatContentClass}`}>
-                    <p className="message-time"> {time.dayOfMonth} {month} {hour}:{minute} {dayTime}</p>
+                    <p className="message-time">Lúc {hour}:{minute} {dayTime}, ngày {time.dayOfMonth} {month}</p>
                 </div>
             </div>
         </div>

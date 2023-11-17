@@ -19,6 +19,7 @@ header .navbar-wrapper {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    transform: translate(-10%, 0%);
     align-items: center;
     flex-wrap: wrap;
 }
@@ -31,7 +32,8 @@ header .nav-searchbar-container {
 }
 
 header .site-logo {
-    padding-right: 2rem;
+    
+    padding-right: 13px;
     font-size: 1.2rem;
 }
 

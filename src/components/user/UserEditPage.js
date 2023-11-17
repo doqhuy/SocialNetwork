@@ -241,7 +241,7 @@ class UserEditPage extends Component {
                                         <div className="form-group">
                                             <label htmlFor="birthDay" className="font-weight-bold" >Ngày sinh</label>
                                             <input
-                                                type="text"
+                                                type="date"
                                                 className={"form-control " + (shouldMarkError('birthDay') ? "error" : "")}
                                                 id="birthDay"
                                                 name="birthDay"
@@ -369,18 +369,23 @@ class UserEditPage extends Component {
                                         </div>}
                                     </section>
                                 </div>
-                                <div className="container form-group">
-                                            <label htmlFor="info" className="font-weight-bold" >Thông tin tiểu sử</label>
-                                            <textarea 
-                                                className={"form-control " + (shouldMarkError('backgroundImageUrl') ? "error" : "")} 
-                                                rows="3" 
-                                                id="info" 
-                                                name="info"
-                                                value={this.state.info}
-                                                onChange={this.onChangeHandler}
-                                                />
-                                            {shouldMarkError('info') && <small id="infoHelp" className="form-text alert alert-danger">{(!this.state.info ? 'Info is required!' : '')}</small>}
-                                        </div>
+                                <div className="form-group">
+                                <div class="col-md-12">
+                                    <label for="inputCity" class="form-label">Tiểu sử</label>
+                                    <input
+                                        type="text"
+                                        className={"form-control " + (shouldMarkError('info') ? "error" : "")}
+                                        id="info"
+                                        name="info"
+                                        value={this.state.info}
+                                        onChange={this.onChangeHandler}
+                                        onBlur={this.handleBlur('info')}
+                                        aria-describedby="infoHelp"
+                                        placeholder="Nhập thông in tiểu sử"
+                                    />
+                                    {shouldMarkError('info') && <small id="info" className="form-text alert alert-danger">{(!this.state.info ? 'Tiểu sử trống!' : '')}</small>}
+                                </div>
+                                </div>
                                         
                                 <div className="hr-styles"></div>
                                 <div className="text-center">

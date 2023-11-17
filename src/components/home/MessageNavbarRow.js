@@ -27,7 +27,7 @@ const MessageNavBarRow = (props) => {
             <div className="messagebox-navbar-username-container" >
                 <div className="message-wrapper">
                     <p className="messagebox-navbar-username">{userNameFormatted} <span>({count})</span> </p>
-                    <p className="message-navbar-time"> {time.dayOfMonth} {month} {hour}:{minute} {dayTime}</p>
+                    <p className="message-navbar-time">Lúc {hour}:{minute} {dayTime}, ngày {time.dayOfMonth} {month}</p>
                 </div>
                 <p className="message-navbar-content">{contentFormatted}</p>
             </div>

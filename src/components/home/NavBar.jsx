@@ -151,6 +151,7 @@ class Navbar extends Component {
         const isAdmin = userService.isAdmin();
         const isRoot = userService.isRoot();
         const userId = userService.getUserId();
+        
 
         const { loggedIn, onLogout } = this.props;
         const showDropdown = this.state.showDropdown;
@@ -158,12 +159,11 @@ class Navbar extends Component {
         let pathname = this.props.location.pathname !== "/";
 
         const isFrendRequestsArrEmpty = this.props.friendRequestsArr.length > 0
-
         let messages = (
             <Fragment>
                 <div className="dropdown-messagebox-header" onClick={this.changeHeight}>
                     <h5 className="dropdown-chat-title" style={{ color: ' #333' }}>
-                        Thông báo tin nhắn rỗng
+                        Không có tin nhắn mới!
                     </h5>
                 </div>
             </Fragment>
@@ -185,7 +185,6 @@ class Navbar extends Component {
                 </Fragment>
             )
         }
-
         return (
             <Fragment >
                 <input type="checkbox" name="main-nav-toggle" id="main-nav-toggle" />
@@ -239,14 +238,6 @@ class Navbar extends Component {
                                             </div>   
                                         </li>
                                     </ul>}
-                                    {/*<li className="nav-item">
-                                                    <NavLink exact to={`/home/friendRequests/${userId}`} className="nav-link tooltipCustom">
-                                                        <i className="fas fa-user-friends"></i>
-                                                        {isFrendRequestsArrEmpty && <span id="icon-badge-container-friend-requests">{this.props.friendRequestsArr.length}</span>}
-                                                        <i id="icon-badge-container-friend-requests" data-count="2" className="fas fa-user-friends"></i>
-                                                        <span className="tooltiptextCustom" id="friend-requests-tooltip">Lời mời kết bạn</span>
-                                                    </NavLink>
-                                    </li>*/}
 
                                     {loggedIn &&
                                         <li className="nav-item"
@@ -278,10 +269,10 @@ class Navbar extends Component {
                                         <li class='active'></li>
                                         <li>
                                             <div class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">  <img className="imgProfile" src={userService.getProfilePicUrl} alt="" /> {userService.getUsername()}</a>
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">  <img className = "imgProfile" src={this.props.userId} alt="" /> {userService.getFirstName()}</a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">            
                                                 <li className="nav-item"><NavLink exact to={`/home/profile/${userId}`} className="nav-link " >Trang cá nhân</NavLink></li>
-                                                <li className="nav-item"><NavLink exact to={`/home/friends/${userId}`} className="nav-link " >Cài đặt</NavLink></li>
+                                                <li className="nav-item"><NavLink exact to={`/setting/account/${userId}`} className="nav-link " >Cài đặt</NavLink></li>
                                                 <li className="nav-item"><NavLink exact to="#" className="nav-link " onClick={onLogout} >Đăng xuất</NavLink></li>
                                             </ul>
                                             </div>   

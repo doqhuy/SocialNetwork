@@ -5,6 +5,7 @@ import { ToastComponent } from '../common';
 import TextareaAutosize from 'react-autosize-textarea';
 import FriendChatBox from './FriendChatBox';
 import FriendMessage from './FriendMessage';
+import SendBtn from '../../assets/images/send-btn.png'
 import '../user/css/UserAllPage.css';
 import './css/MessageBox.css';
 import { connect } from 'react-redux';
@@ -145,7 +146,7 @@ class MessageBox extends Component {
                         if (messageBody.fromUserId !== userService.getUserId()) {
                             const formattedUserNames = userService.formatUsername(messageBody.fromUserFirstName, messageBody.fromUserLastName)
 
-                            toast.info(<ToastComponent.infoToast text={`You have a new message from ${formattedUserNames}!`} />, {
+                            toast.info(<ToastComponent.infoToast text={`Bạn có tin nhắn từ ${formattedUserNames}!`} />, {
                                 position: toast.POSITION.TOP_RIGHT
                             });
 
@@ -169,17 +170,17 @@ class MessageBox extends Component {
                 });
             }
         }, () => {
-            toast.error(<ToastComponent.errorToast text={`Lost connection to ${this.serverUrl}. Refresh the page to reconnect.`} />, {
+            toast.error(<ToastComponent.errorToast  text={`Lost connection to ${this.serverUrl}. Trying to reconnect.`}/>, {
                 position: toast.POSITION.TOP_RIGHT
             });
 
             //// Callback for automatically reconnecting to the server
-            // setTimeout(() => {
-            //     toast.error(<ToastComponent.errorToast text={`Lost connection to ${this.serverUrl}. Trying to reconnect.`} />, {
-            //         position: toast.POSITION.TOP_RIGHT
-            //     });
-            //     this.initializeWebSocketConnection();
-            // }, 10000);
+            setTimeout(() => {
+                toast.error(<ToastComponent.errorToast text={`Lost connection to ${this.serverUrl}. Trying to reconnect.`} />, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                this.initializeWebSocketConnection();
+            }, 10000);
         });
     }
 
@@ -324,7 +325,7 @@ class MessageBox extends Component {
     render() {
         if (!this.state.clientConnected) {
             console.log('Connecting...')
-            return <h1 className="text-center pt-5 mt-5">Connecting...</h1>
+            return <h1 className="text-center pt-5 mt-5">Đang kết nối...</h1>
         }
 
         const { content } = this.state;
@@ -399,14 +400,14 @@ class MessageBox extends Component {
                                                 onChange={this.onChangeHandler}
                                                 onBlur={this.handleBlur('content')}
                                                 aria-describedby="contentHelp"
-                                                placeholder={`Type your message, ${firstNameFormatted}?`}
+                                                placeholder={`Nội dung tin nhắn`}
                                                 maxRows={6}
                                             >
                                             </TextareaAutosize>
                                         </div>
 
                                         <div className="text-center">
-                                            <button disabled={!isEnabled} style={{ 'visibility': `${displayButon}` }} type="submit" className="btn fas fa-location-arrow App-button-primary send-btn"></button>
+                                            <button disabled={!isEnabled} style={{ 'visibility': `${displayButon}` }} type="submit" className="send-btn"><img className="iconSendBtn" src={SendBtn}></img></button>
                                         </div>
                                     </form>
                                 </div>

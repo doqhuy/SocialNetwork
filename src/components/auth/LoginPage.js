@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { ToastComponent } from '../common';
 import { connect } from 'react-redux';
 import { loginAction, redirectAction } from '../../store/actions/authActions';
+import '../../styles/FormPages.css';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class LoginPage extends Component {
         } else if (this.props.loginSuccess) {
             this.props.redirect();
 
-            toast.success(<ToastComponent.successToast text={' You have successfully logged in!'} />, {
+            toast.success(<ToastComponent.successToast text={'Bạn đã đăng nhập thành công!'} />, {
                 position: toast.POSITION.TOP_RIGHT
             });
 
@@ -67,7 +68,6 @@ class LoginPage extends Component {
             touched: { ...this.state.touched, [field]: true }
         });
     }
-
     validate = (username, password) => {
         return {
             username: username.length === 0,
@@ -95,7 +95,7 @@ class LoginPage extends Component {
 
                     <form className="Login-form-container" onSubmit={this.onSubmitHandler}>
                         <div className="form-group">
-                            <label htmlFor="username">Tên đăng nhập</label>
+                            <label htmlFor="username" className="form-label">Tên đăng nhập</label>
                             <input
                                 type="text"
                                 className={"form-control " + (shouldMarkError('username') ? "error" : "")}

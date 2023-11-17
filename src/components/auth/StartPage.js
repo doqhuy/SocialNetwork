@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink, Route, Switch } from 'react-router-dom';
 import userService from '../../infrastructure/userService';
-import './css/StartPage.css';
+import './css/auth.css';
 
 const StartPage = () => {
     const isAdmin = userService.isAdmin();

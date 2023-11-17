@@ -1,14 +1,20 @@
 .dropdown-container{
     position: absolute;
     top: 4rem;
-    right: 200px;
+    right:200px;
     z-index: 1000;
     display: none;
     width: 500px;
     border-radius: 5px;
 }
+.navbar-wrapper .nav-main{
+    transform: translate(62%, 0%);
+}
+.form-control{
+    width:100px;
+}
 .navbar button{
-    width:120px;
+    width: 120px;
 }
 .imgMess{
     width:30px;
@@ -21,7 +27,6 @@
 .show-dropdown{
     display: block;
 }
-
 .button-navbar-outline{
     color:rgb(192, 192, 192);
     background: #1a1c20;
@@ -95,6 +100,7 @@
     height:30px;
 }
 .main-logo {
+    margin-left:0px;
     width:50px;
     height:50px;
 }
@@ -110,7 +116,19 @@
 
 @media screen and (max-width: 800px){
     .form-inline {
-        display: none;
+        display:none;
+    }
+    .main-logo {
+        margin-left:70px;
+        width:50px;
+        height:50px;
+    }
+    .nav-item{
+        width:fit-content;
+        margin-right:500px;
+    }
+    .navbar-wrapper .nav-main{
+        transform: translate(62%, 0%);
     }
 }
 

@@ -29,6 +29,9 @@ h1{
     position: relative;
     margin-bottom: 2.8rem; 
 }
+.form-group input{
+    width:100%;
+}
 
 .error{
     border: 2px solid red;
@@ -113,6 +116,3 @@ input.error:focus{
         width: 100%;
      }
  }
-
-
-
