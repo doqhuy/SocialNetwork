@@ -4,19 +4,19 @@ Project Java
 
 #Tính năng:
 
-Xác thực người dùng: Đăng ký/Đăng nhập/Đăng xuất
-Tạo và xóa người dùng
-Chỉnh sửa tài khoản người dùng
-Chỉnh sửa hồ sơ người dùng
-Tìm kiếm bạn bè bằng tên hoặc email
-Gửi, xóa, hủy và chấp nhận yêu cầu kết bạn
-Xóa bạn bè khỏi danh sách bạn bè
-Thêm và xóa hình ảnh (Kho ảnh lưu trữ trên cloud)
-Tạo và xóa bài viết (text)
-Tạo và xóa bình luận (text)
-Chức năng trò chuyện: viết và nhận tin nhắn (text, hình ảnh, video) từ bạn bè
+Xác thực người dùng: Đăng ký/Đăng nhập/Đăng xuất.
+Tạo và xóa người dùng.
+Chỉnh sửa tài khoản người dùng.
+Chỉnh sửa hồ sơ người dùng.
+Tìm kiếm bạn bè bằng tên hoặc email.
+Gửi, xóa, hủy và chấp nhận yêu cầu kết bạn.
+Xóa bạn bè khỏi danh sách bạn bè.
+Thêm và xóa hình ảnh (Kho ảnh lưu trữ trên cloud).
+Tạo và xóa bài viết (text).
+Tạo và xóa bình luận (text).
+Chức năng trò chuyện: viết và nhận tin nhắn (text, hình ảnh, video) từ bạn bè.
 Tạo nhóm trò chuyện với nhiều người.
-Nhật ký lịch sử (ROOT)
+Nhật ký lịch sử (ROOT).
 
 
 Ứng dụng chạy trên Java 11
