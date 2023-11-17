@@ -150,7 +150,7 @@ class SettingPassPage extends Component {
         const { username, email, password, confirmPassword} = this.state;
         const errors = this.validate(username, email, password, confirmPassword);
         const isEnabled = !Object.keys(errors).some(x => errors[x])
-
+        const userId = userService.getUserId();
         const shouldMarkError = (field) => {
             const hasError = errors[field];
             const shouldShow = this.state.touched[field];
@@ -169,39 +169,24 @@ class SettingPassPage extends Component {
 
                             <form class="row g-3" onSubmit={this.onSubmitHandler}>
                             <div className=" col-md-12 form-group">
-                                        <label htmlFor="password" ></label>
+                                        <label htmlFor="email" ></label>
                                         <input
-                                            type="password"
-                                            className={"form-control " + (shouldMarkError('password') ? "error" : "")}
-                                            id="password"
-                                            name="password"
-                                            value={this.state.password}
+                                            type="text"
+                                            className={"form-control " + (shouldMarkError('email') ? "error" : "")}
+                                            id="email"
+                                            name="email"
+                                            value={this.state.email}
                                             onChange={this.onChangeHandler}
-                                            onBlur={this.handleBlur('password')}
-                                            aria-describedby="passwordHelp"
-                                            placeholder="Nhập mật khẩu"
+                                            onBlur={this.handleBlur('email')}
+                                            aria-describedby="emailHelp"
+                                            placeholder="Nhập email"
                                         />
-                                        {shouldMarkError('password') && <small id="passwordHelp" className="form-text alert alert-danger">{(!this.state.password ? 'Mật khẩu không được để trống!' : 'Mật khẩu phải từ 4 ký tự đến 16 ký tự!')}</small>}
+                                        {shouldMarkError('email') && <small id="emailHelp" className="form-text alert alert-danger">{(!this.state.email ? 'Email không được để trống!' : 'Email không đúng định dạng!')}</small>}
                                     </div>
-                                <div className="col-md-12 form-group">
-                                        <label htmlFor="confirmPassword" ></label>
-                                        <input
-                                            type="password"
-                                            className={"form-control " + (shouldMarkError('confirmPassword') ? "error" : "")}
-                                            id="confirmPassword"
-                                            name="confirmPassword"
-                                            value={this.state.confirmPassword}
-                                            onChange={this.onChangeHandler}
-                                            onBlur={this.handleBlur('confirmPassword')}
-                                            aria-describedby="confirmPasswordHelp"
-                                            placeholder="Xác nhận mật khẩu"
-                                        />
-                                        {shouldMarkError('confirmPassword') && <small id="confirmPasswordHelp" className="form-text alert alert-danger">Mật khẩu không giống!</small>}
+                                
+                                    <div className="container text-center">
+                                        <a className="btn side-bar-child" href={`http://localhost:8000/changepasspage/${userId}`}>Đổi mật khẩu</a>
                                     </div>
-                                <div className="col-12 text-center">
-                                    <button type="submit" className="btn App-button-primary btn-lg m-3">Lưu thay đổi</button>
-                                    <NavLink className="btn App-button-primary btn-lg m-3" to={`/setting/profile/${this.props.id}`} role="button">Hủy</NavLink>
-                                </div>
                             </form>
                         </div>
                     </section>
