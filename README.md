@@ -13,6 +13,7 @@ Gửi, xóa, hủy và chấp nhận yêu cầu kết bạn.
 Xóa bạn bè khỏi danh sách bạn bè.
 Thêm và xóa hình ảnh (Kho ảnh lưu trữ trên cloud).
 Tạo và xóa bài viết (text).
+Thích bài viết.
 Tạo và xóa bình luận (text).
 Chức năng trò chuyện: viết và nhận tin nhắn (text, hình ảnh, video) từ bạn bè.
 Tạo nhóm trò chuyện với nhiều người.
