@@ -31,7 +31,8 @@ Tạo thư mục với tên project và thực hiện lệnh sau
 
 npx create-react-app client
 cd client
-npm i net react react-autosize-textarea@7.1.0 react-dom@18.2.0 react-icons react-redux react-router react-router-dom 
+npm install react-autosize-textarea --legacy-peer-deps
+npm i net react-dom@18.2.0 react-icons react-redux react-router react-router-dom 
 react-scripts react-spinners react-toastify redux redux-logger redux-thunk sockjs-client stompjs web-vitals
 npm start
 
