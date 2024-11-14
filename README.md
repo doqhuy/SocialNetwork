@@ -51,6 +51,8 @@ Vào Cloudinary điền các thông tin cần điển trong application.properti
 Hoặc bạn có thể dùng tài khoản trong source
 (SocialNetwork\Server\src\main\resources\application.properties)
 
+Chạy lệnh ở terminal: ./mvnw spring-boot:run
+
 Ứng dụng sever chạy trên port 8000
 
 
