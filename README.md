@@ -24,21 +24,21 @@ Nhật ký lịch sử (ROOT).
 
 #Cài đặt:
 
-Bước 1: Bắt đầu với frond-end
+Bước 1: Bắt đầu với client chạy bằng React
 
 Chạy dự án bằng VS Code
 Tạo thư mục với tên project và thực hiện lệnh sau
 
-npx create-react-app client
-cd client
-npm install react-autosize-textarea --legacy-peer-deps
-npm i net react-dom@18.2.0 react-icons react-redux react-router react-router-dom 
-react-scripts react-spinners react-toastify redux redux-logger redux-thunk sockjs-client stompjs web-vitals
+Xóa dòng react-autosize-textarea trong file package.json
+npm i
+
+npm i react-autosize-textarea --legacy-peer-deps
+
 npm start
 
 Ứng dụng client chạy trên port 3000
 
-Bước 2: Bắt đầu với back-end
+Bước 2: Bắt đầu với back-end chạy bằng Spring
 Chạy dự án bằng Intellij IDEA
 Tạo thư mục PictureSave để lưu ảnh trên local (dành cho chat) bằng cách thêm đường dẫn thư mục vào dòng 14
 (src/main/java/instaface.backend/Chat/Controllers/Imageconfig)
